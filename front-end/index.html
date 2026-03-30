@@ -1,0 +1,1669 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AKAZI SCROLL - Rwanda Youth Employment Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Outfit", sans-serif;
+        background-color: #07091a;
+        color: white;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Cormorant Garamond", serif;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .float {
+        animation: float 4s ease-in-out infinite;
+      }
+      .fade-up {
+        animation: fadeUp 0.8s ease forwards;
+      }
+      .page {
+        display: none;
+      }
+      .page.active {
+        display: block;
+      }
+      .nav-link {
+        transition: all 0.2s;
+      }
+      .nav-link:hover {
+        color: #00baff;
+      }
+      .nav-link.active {
+        color: #07091a;
+        background: linear-gradient(135deg, #00baff, #0088cc);
+        border-radius: 999px;
+      }
+
+      /* ── Light mode ── */
+      body.light {
+        background-color: #f0f4f8;
+        color: #07091a;
+      }
+      body.light nav {
+        background-color: rgba(240, 244, 248, 0.92) !important;
+        border-color: rgba(0, 0, 0, 0.1) !important;
+      }
+      body.light #mobile-menu {
+        background-color: rgba(240, 244, 248, 0.98) !important;
+        border-color: rgba(0, 0, 0, 0.1) !important;
+      }
+      body.light .dark-card {
+        background: linear-gradient(135deg, #ffffff, #f1f5f9) !important;
+        border-color: rgba(0, 0, 0, 0.08) !important;
+      }
+      body.light .dark-section {
+        background-color: #f0f4f8 !important;
+      }
+      body.light .text-white {
+        color: #07091a !important;
+      }
+      body.light .text-white\/70 {
+        color: rgba(7, 9, 26, 0.7) !important;
+      }
+      body.light .text-white\/60 {
+        color: rgba(7, 9, 26, 0.6) !important;
+      }
+      body.light .text-white\/50 {
+        color: rgba(7, 9, 26, 0.5) !important;
+      }
+      body.light .text-white\/40 {
+        color: rgba(7, 9, 26, 0.4) !important;
+      }
+      body.light .text-white\/30 {
+        color: rgba(7, 9, 26, 0.3) !important;
+      }
+      body.light .text-white\/25 {
+        color: rgba(7, 9, 26, 0.25) !important;
+      }
+      body.light .bg-white\/5 {
+        background-color: rgba(0, 0, 0, 0.04) !important;
+      }
+      body.light .bg-white\/10 {
+        background-color: rgba(0, 0, 0, 0.07) !important;
+      }
+      body.light .border-white\/10 {
+        border-color: rgba(0, 0, 0, 0.1) !important;
+      }
+      body.light .border-white\/20 {
+        border-color: rgba(0, 0, 0, 0.15) !important;
+      }
+      body.light .nav-link.active {
+        color: #07091a !important;
+      }
+      body.light input,
+      body.light select,
+      body.light textarea {
+        background-color: rgba(0, 0, 0, 0.04) !important;
+        border-color: rgba(0, 0, 0, 0.12) !important;
+        color: #07091a !important;
+      }
+      body.light input::placeholder,
+      body.light textarea::placeholder {
+        color: rgba(7, 9, 26, 0.3) !important;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen">
+    <!-- NAVBAR -->
+    <nav
+      class="sticky top-0 z-50 bg-[#07091A]/80 backdrop-blur-xl border-b border-white/10 px-4 md:px-8 py-4 flex items-center justify-between"
+    >
+      <div
+        class="flex items-center gap-3 cursor-pointer"
+        onclick="showPage('home')"
+      >
+        <div
+          class="w-9 h-9 bg-gradient-to-br from-[#00BAFF] to-[#0088CC] rounded-xl flex items-center justify-center shadow-lg shadow-[#00BAFF]/30"
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#07091A"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+          </svg>
+        </div>
+        <div>
+          <div
+            class="font-bold text-lg md:text-xl tracking-wide leading-none"
+            style="font-family: &quot;Cormorant Garamond&quot;, serif"
+          >
+            AKAZI<span class="text-[#00BAFF]">SCROLL</span>
+          </div>
+          <div
+            class="text-[9px] text-white/30 tracking-widest uppercase hidden sm:block"
+          >
+            Rwanda Youth Platform
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop nav -->
+      <div
+        class="hidden md:flex gap-1 bg-white/5 border border-white/10 rounded-full px-2 py-1.5"
+      >
+        <button
+          onclick="showPage('home')"
+          id="nav-home"
+          class="nav-link active px-4 py-2 text-sm font-medium"
+        >
+          Home
+        </button>
+        <button
+          onclick="showPage('jobs')"
+          id="nav-jobs"
+          class="nav-link px-4 py-2 text-sm font-medium text-white/60"
+        >
+          Jobs
+        </button>
+        <button
+          onclick="showPage('register')"
+          id="nav-register"
+          class="nav-link px-4 py-2 text-sm font-medium text-white/60"
+        >
+          Register
+        </button>
+        <button
+          onclick="showPage('login')"
+          id="nav-login"
+          class="nav-link px-4 py-2 text-sm font-medium text-white/60"
+        >
+          Login
+        </button>
+        <button
+          onclick="showPage('employer')"
+          id="nav-employer"
+          class="nav-link px-4 py-2 text-sm font-medium text-white/60"
+        >
+          Employer
+        </button>
+        <button
+          onclick="showPage('analytics')"
+          id="nav-analytics"
+          class="nav-link px-4 py-2 text-sm font-medium text-white/60"
+        >
+          Analytics
+        </button>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <!-- Theme toggle -->
+        <button
+          onclick="toggleTheme()"
+          id="theme-btn"
+          title="Toggle theme"
+          class="flex items-center justify-center w-9 h-9 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition"
+        >
+          <svg
+            id="icon-moon"
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          <svg
+            id="icon-sun"
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="hidden"
+          >
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        </button>
+        <!-- Get started -->
+        <button
+          onclick="showPage('register')"
+          class="hidden sm:flex bg-gradient-to-r from-[#00BAFF] to-[#0088CC] text-[#07091A] font-semibold px-4 py-2.5 rounded-xl text-sm shadow-lg shadow-[#00BAFF]/30 hover:opacity-90 transition items-center gap-2"
+        >
+          Get Started
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </button>
+        <!-- Hamburger -->
+        <button
+          id="menu-btn"
+          onclick="toggleMenu()"
+          class="md:hidden flex flex-col gap-1.5 p-2"
+        >
+          <span class="w-5 h-0.5 bg-current block"></span>
+          <span class="w-5 h-0.5 bg-current block"></span>
+          <span class="w-5 h-0.5 bg-current block"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div
+      id="mobile-menu"
+      class="hidden bg-[#07091A]/95 border-b border-white/10 px-4 py-4 flex-col gap-2 z-40"
+    >
+      <button
+        onclick="
+          showPage('home');
+          toggleMenu();
+        "
+        class="text-left px-4 py-3 text-sm font-medium text-white/70 hover:text-white border border-white/10 rounded-xl hover:bg-white/5 transition"
+      >
+        Home
+      </button>
+      <button
+        onclick="
+          showPage('jobs');
+          toggleMenu();
+        "
+        class="text-left px-4 py-3 text-sm font-medium text-white/70 hover:text-white border border-white/10 rounded-xl hover:bg-white/5 transition"
+      >
+        Jobs
+      </button>
+      <button
+        onclick="
+          showPage('register');
+          toggleMenu();
+        "
+        class="text-left px-4 py-3 text-sm font-medium text-white/70 hover:text-white border border-white/10 rounded-xl hover:bg-white/5 transition"
+      >
+        Register
+      </button>
+      <button
+        onclick="
+          showPage('login');
+          toggleMenu();
+        "
+        class="text-left px-4 py-3 text-sm font-medium text-white/70 hover:text-white border border-white/10 rounded-xl hover:bg-white/5 transition"
+      >
+        Login
+      </button>
+      <button
+        onclick="
+          showPage('employer');
+          toggleMenu();
+        "
+        class="text-left px-4 py-3 text-sm font-medium text-white/70 hover:text-white border border-white/10 rounded-xl hover:bg-white/5 transition"
+      >
+        Employer
+      </button>
+      <button
+        onclick="
+          showPage('analytics');
+          toggleMenu();
+        "
+        class="text-left px-4 py-3 text-sm font-medium text-white/70 hover:text-white border border-white/10 rounded-xl hover:bg-white/5 transition"
+      >
+        Analytics
+      </button>
+      <button
+        onclick="
+          showPage('register');
+          toggleMenu();
+        "
+        class="bg-gradient-to-r from-[#00BAFF] to-[#0088CC] text-[#07091A] font-semibold px-4 py-3 rounded-xl text-sm mt-1"
+      >
+        Get Started
+      </button>
+    </div>
+
+    <!-- PAGE: HOME -->
+    <div id="page-home" class="page active">
+      <section
+        class="relative px-4 sm:px-8 md:px-16 py-16 md:py-24 overflow-hidden text-center"
+      >
+        <div
+          class="absolute inset-0"
+          style="
+            background:
+              radial-gradient(
+                ellipse 60% 60% at 20% 50%,
+                #00baff14 0%,
+                transparent 70%
+              ),
+              radial-gradient(
+                ellipse 50% 50% at 80% 30%,
+                #00c46a10 0%,
+                transparent 70%
+              );
+          "
+        ></div>
+        <div
+          class="absolute inset-0 opacity-[0.03]"
+          style="
+            background-image:
+              linear-gradient(#00baff 1px, transparent 1px),
+              linear-gradient(90deg, #00baff 1px, transparent 1px);
+            background-size: 52px 52px;
+          "
+        ></div>
+        <div class="relative max-w-4xl mx-auto">
+          <div
+            class="inline-flex items-center gap-2 bg-[#00BAFF]/10 border border-[#00BAFF]/30 rounded-full px-4 py-2 mb-8"
+          >
+            <div
+              class="w-2 h-2 bg-[#00C46A] rounded-full shadow shadow-[#00C46A]"
+            ></div>
+            <span class="text-[#00BAFF] text-xs font-medium"
+              >Now live in Kigali · Expanding to all 30 districts</span
+            >
+          </div>
+          <h1
+            class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-none mb-6"
+            style="font-family: &quot;Cormorant Garamond&quot;, serif"
+          >
+            Rwanda's Youth<br />
+            <span
+              class="bg-gradient-to-r from-[#00BAFF] via-white to-[#00C46A] bg-clip-text text-transparent"
+              >Employment Engine</span
+            >
+          </h1>
+          <p
+            class="text-white/60 text-base md:text-lg max-w-xl mx-auto mb-8 leading-relaxed"
+          >
+            Connecting <strong class="text-white">250,000+</strong> Rwandan
+            youth annually to verified opportunities through hub-verified
+            skills, intelligent matching, and real-time government tracking.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 justify-center mb-8">
+            <button
+              onclick="showPage('register')"
+              class="bg-gradient-to-r from-[#00BAFF] to-[#0088CC] text-[#07091A] font-semibold px-6 py-3 rounded-xl text-sm shadow-lg shadow-[#00BAFF]/30 hover:opacity-90 transition flex items-center justify-center gap-2"
+            >
+              Start for Free
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+            <button
+              onclick="showPage('jobs')"
+              class="border border-[#00BAFF]/40 text-[#00BAFF] font-semibold px-6 py-3 rounded-xl text-sm hover:bg-[#00BAFF]/10 transition flex items-center justify-center gap-2"
+            >
+              Browse Jobs
+            </button>
+          </div>
+          <div
+            class="flex gap-4 md:gap-6 justify-center flex-wrap text-xs text-white/40"
+          >
+            <span>✓ Free for all youth</span><span>✓ SMS & USSD support</span
+            ><span>✓ Kinyarwanda / EN / FR</span><span>✓ Mobile-first</span>
+          </div>
+        </div>
+        <div class="flex justify-center gap-4 mt-12 flex-wrap px-4">
+          <div
+            class="float dark-card bg-gradient-to-br from-[#162035] to-[#0D1526] border border-white/10 rounded-2xl p-5 w-44 md:w-52"
+            style="animation-delay: 0s"
+          >
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <div class="font-semibold text-xs md:text-sm">Software Dev</div>
+                <div class="text-white/40 text-xs">Andela Rwanda</div>
+              </div>
+              <div
+                class="bg-[#00C46A]/15 border border-[#00C46A]/40 rounded-xl px-2 py-1 text-center"
+              >
+                <div class="text-[#00C46A] font-bold text-sm md:text-base">
+                  94%
+                </div>
+                <div class="text-white/30 text-[9px]">match</div>
+              </div>
+            </div>
+            <span
+              class="bg-[#00BAFF]/15 border border-[#00BAFF]/30 text-[#00BAFF] text-[10px] font-semibold px-3 py-1 rounded-full"
+              >Full-time</span
+            >
+          </div>
+          <div
+            class="float dark-card bg-gradient-to-br from-[#162035] to-[#0D1526] border border-white/10 rounded-2xl p-5 w-44 md:w-52 sm:-mt-3"
+            style="animation-delay: 0.5s"
+          >
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <div class="font-semibold text-xs md:text-sm">Data Analyst</div>
+                <div class="text-white/40 text-xs">RRA</div>
+              </div>
+              <div
+                class="bg-[#00BAFF]/15 border border-[#00BAFF]/40 rounded-xl px-2 py-1 text-center"
+              >
+                <div class="text-[#00BAFF] font-bold text-sm md:text-base">
+                  81%
+                </div>
+                <div class="text-white/30 text-[9px]">match</div>
+              </div>
+            </div>
+            <span
+              class="bg-[#FFB800]/15 border border-[#FFB800]/30 text-[#FFB800] text-[10px] font-semibold px-3 py-1 rounded-full"
+              >Internship</span
+            >
+          </div>
+          <div
+            class="float dark-card bg-gradient-to-br from-[#162035] to-[#0D1526] border border-white/10 rounded-2xl p-5 w-44 md:w-52"
+            style="animation-delay: 1s"
+          >
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <div class="font-semibold text-xs md:text-sm">UX Designer</div>
+                <div class="text-white/40 text-xs">MTN Rwanda</div>
+              </div>
+              <div
+                class="bg-[#00BAFF]/15 border border-[#00BAFF]/40 rounded-xl px-2 py-1 text-center"
+              >
+                <div class="text-[#00BAFF] font-bold text-sm md:text-base">
+                  76%
+                </div>
+                <div class="text-white/30 text-[9px]">match</div>
+              </div>
+            </div>
+            <span
+              class="bg-[#00BAFF]/15 border border-[#00BAFF]/30 text-[#00BAFF] text-[10px] font-semibold px-3 py-1 rounded-full"
+              >Full-time</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="border-y border-white/10 py-10 px-4 md:px-16">
+        <div
+          class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto text-center"
+        >
+          <div>
+            <div
+              class="text-3xl md:text-4xl font-bold"
+              style="font-family: &quot;Cormorant Garamond&quot;, serif"
+            >
+              250K+
+            </div>
+            <div class="text-white/30 text-xs mt-1">Youth per year</div>
+          </div>
+          <div>
+            <div
+              class="text-3xl md:text-4xl font-bold"
+              style="font-family: &quot;Cormorant Garamond&quot;, serif"
+            >
+              80%
+            </div>
+            <div class="text-white/30 text-xs mt-1">Faster screening</div>
+          </div>
+          <div>
+            <div
+              class="text-3xl md:text-4xl font-bold"
+              style="font-family: &quot;Cormorant Garamond&quot;, serif"
+            >
+              32
+            </div>
+            <div class="text-white/30 text-xs mt-1">Youth centres</div>
+          </div>
+          <div>
+            <div
+              class="text-3xl md:text-4xl font-bold"
+              style="font-family: &quot;Cormorant Garamond&quot;, serif"
+            >
+              10%
+            </div>
+            <div class="text-white/30 text-xs mt-1">
+              Unemployment target 2030
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="px-4 sm:px-8 md:px-16 py-16 max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+          <div
+            class="text-[#00BAFF] text-xs font-bold tracking-widest uppercase mb-3"
+          >
+            Why AKAZI SCROLL
+          </div>
+          <h2 class="text-3xl md:text-5xl font-bold">
+            Built for Rwanda's Reality
+          </h2>
+          <p class="text-white/50 text-sm mt-3">
+            Addressing the three coordination failures that leave 32% of youth
+            NEET.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div
+            class="dark-card bg-gradient-to-br from-[#162035] to-[#0D1526] border border-[#00BAFF]/30 rounded-2xl p-6 md:p-7 shadow-lg shadow-[#00BAFF]/10"
+          >
+            <div
+              class="w-12 h-12 bg-[#00BAFF]/15 border border-[#00BAFF]/30 rounded-xl flex items-center justify-center mb-5"
+            >
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#00BAFF"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">Hub-Verified Skills</h3>
+            <p class="text-white/50 text-sm leading-relaxed">
+              32 youth centres + 7 Hanga Hubs verify credentials eliminating the
+              37.6% trust gap in self-reported skills.
+            </p>
+          </div>
+          <div
+            class="dark-card bg-gradient-to-br from-[#162035] to-[#0D1526] border border-white/10 rounded-2xl p-6 md:p-7"
+          >
+            <div
+              class="w-12 h-12 bg-[#FFB800]/15 border border-[#FFB800]/30 rounded-xl flex items-center justify-center mb-5"
+            >
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#FFB800"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">Intelligent Matching</h3>
+            <p class="text-white/50 text-sm leading-relaxed">
+              Algorithm generates 0–100% compatibility scores, reducing employer
+              screening time by 80%.
+            </p>
+          </div>
+          <div
+            class="dark-card bg-gradient-to-br from-[#162035] to-[#0D1526] border border-white/10 rounded-2xl p-6 md:p-7"
+          >
+            <div
+              class="w-12 h-12 bg-[#00C46A]/15 border border-[#00C46A]/30 rounded-xl flex items-center justify-center mb-5"
+            >
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#00C46A"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path
+                  d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">SACCO Finance Access</h3>
+            <p class="text-white/50 text-sm leading-relaxed">
+              Bridge youth to 416 SACCOs nationwide, growing financial access
+              from 16% to 30%.
+            </p>
+          </div>
+          <div
+            class="dark-card bg-gradient-to-br from-[#162035] to-[#0D1526] border border-white/10 rounded-2xl p-6 md:p-7"
+          >
+            <div
+              class="w-12 h-12 bg-purple-500/15 border border-purple-500/30 rounded-xl flex items-center justify-center mb-5"
+            >
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#A78BFA"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 20V10M18 20V4M6 20v-4" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">Government Analytics</h3>
+            <p class="text-white/50 text-sm leading-relaxed">
+              Real-time MIFOTRA tracking across all 30 districts aligned with
+              Vision 2050.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="px-4 sm:px-8 md:px-16 pb-16">
+        <div
+          class="max-w-3xl mx-auto relative overflow-hidden rounded-3xl border border-[#00BAFF]/25 dark-card bg-gradient-to-br from-[#162035] to-[#0D1526] p-8 md:p-16 text-center"
+        >
+          <div
+            class="absolute inset-0"
+            style="
+              background: radial-gradient(
+                ellipse at 30% 50%,
+                #00baff12 0%,
+                transparent 60%
+              );
+            "
+          ></div>
+          <div class="relative">
+            <h2 class="text-3xl md:text-5xl font-bold mb-4">
+              Your next opportunity<br />is one scroll away.
+            </h2>
+            <p class="text-white/50 text-sm mb-8">
+              Free for all youth. Backed by the Government of Rwanda. Aligned
+              with Vision 2050.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+              <button
+                onclick="showPage('register')"
+                class="bg-gradient-to-r from-[#00BAFF] to-[#0088CC] text-[#07091A] font-semibold px-6 py-3 rounded-xl text-sm shadow-lg"
+              >
+                Register as Youth
+              </button>
+              <button
+                onclick="showPage('employer')"
+                class="border border-[#00BAFF]/40 text-[#00BAFF] font-semibold px-6 py-3 rounded-xl text-sm hover:bg-[#00BAFF]/10 transition"
+              >
+                Post Jobs as Employer
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer
+        class="border-t border-white/10 px-4 md:px-16 py-7 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-white/30"
+      >
+        <div
+          class="font-bold text-base"
+          style="font-family: &quot;Cormorant Garamond&quot;, serif"
+        >
+          AKAZI<span class="text-[#00BAFF]">SCROLL</span>
+        </div>
+        <div class="text-center">
+          © 2026 AKAZI SCROLL · African Leadership University · Rwanda
+        </div>
+        <div class="flex gap-5">
+          <a href="#" class="hover:text-white transition">Privacy</a
+          ><a href="#" class="hover:text-white transition">Terms</a
+          ><a href="#" class="hover:text-white transition">Contact</a>
+        </div>
+      </footer>
+    </div>
+
+    <!-- PAGE: JOBS -->
+    <div id="page-jobs" class="page">
+      <div class="p-4 md:p-8">
+        <div class="flex flex-col sm:flex-row gap-3 mb-4">
+          <div class="relative flex-1">
+            <svg
+              class="absolute left-4 top-1/2 -translate-y-1/2 text-white/30"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
+            </svg>
+            <input
+              id="job-search"
+              type="text"
+              placeholder="Search jobs, companies or skills..."
+              class="w-full bg-white/5 border border-white/10 rounded-xl pl-11 pr-4 py-3 text-sm text-white placeholder-white/30 outline-none focus:border-[#00BAFF]/50"
+            />
+          </div>
+          <select
+            id="job-location"
+            class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white/60 outline-none w-full sm:w-44"
+          >
+            <option value="">All Provinces</option>
+            <option value="Kigali">Kigali</option>
+            <option value="Northern">Northern</option>
+            <option value="Southern">Southern</option>
+          </select>
+        </div>
+        <div class="flex gap-2 mb-6 flex-wrap">
+          <button
+            onclick="loadJobs('', '', '')"
+            class="bg-gradient-to-r from-[#00BAFF] to-[#0088CC] text-[#07091A] text-xs font-semibold px-4 py-2 rounded-full"
+          >
+            All
+          </button>
+          <button
+            onclick="loadJobs('', '', 'full_time')"
+            class="bg-white/5 border border-white/10 text-white/50 text-xs font-medium px-4 py-2 rounded-full hover:bg-white/10 transition"
+          >
+            Full-time
+          </button>
+          <button
+            onclick="loadJobs('', '', 'contract')"
+            class="bg-white/5 border border-white/10 text-white/50 text-xs font-medium px-4 py-2 rounded-full hover:bg-white/10 transition"
+          >
+            Contract
+          </button>
+          <button
+            onclick="loadJobs('', '', 'internship')"
+            class="bg-white/5 border border-white/10 text-white/50 text-xs font-medium px-4 py-2 rounded-full hover:bg-white/10 transition"
+          >
+            Internship
+          </button>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-5">
+          <div id="jobs-list" class="flex flex-col gap-3">
+            <p class="text-white/40 text-sm">Loading jobs...</p>
+          </div>
+          <div
+            id="job-detail"
+            class="hidden lg:block dark-card bg-gradient-to-br from-[#162035] to-[#0D1526] border border-[#00BAFF]/30 rounded-2xl p-8 shadow-lg shadow-[#00BAFF]/10 h-fit sticky top-20"
+          >
+            <p class="text-white/40 text-sm">Select a job to see details.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE: REGISTER -->
+    <div id="page-register" class="page">
+      <div class="max-w-xl mx-auto px-4 sm:px-6 py-10 md:py-12">
+        <div class="text-center mb-8">
+          <div
+            class="text-[#00BAFF] text-xs font-bold tracking-widest uppercase mb-2"
+          >
+            Join for Free
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold mb-2">
+            Create Your Profile
+          </h1>
+          <p class="text-white/30 text-sm">
+            Register once. Get matched. Get hired.
+          </p>
+        </div>
+        <div class="flex items-center mb-8 relative">
+          <div class="absolute top-5 left-0 right-0 h-px bg-white/10"></div>
+          <div
+            class="absolute top-5 left-0 h-px bg-gradient-to-r from-[#00BAFF] to-[#00C46A] w-1/4 transition-all"
+          ></div>
+          <div class="flex-1 flex flex-col items-center gap-2 z-10">
+            <div
+              class="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-[#00BAFF] bg-[#00BAFF] flex items-center justify-center text-[#07091A] font-bold text-sm"
+            >
+              1
+            </div>
+            <span class="text-xs font-medium">Account</span>
+          </div>
+          <div class="flex-1 flex flex-col items-center gap-2 z-10">
+            <div
+              class="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-white/20 bg-transparent flex items-center justify-center text-white/30 font-bold text-sm"
+            >
+              2
+            </div>
+            <span class="text-xs text-white/30">Profile</span>
+          </div>
+          <div class="flex-1 flex flex-col items-center gap-2 z-10">
+            <div
+              class="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-white/20 bg-transparent flex items-center justify-center text-white/30 font-bold text-sm"
+            >
+              3
+            </div>
+            <span class="text-xs text-white/30">Skills</span>
+          </div>
+          <div class="flex-1 flex flex-col items-center gap-2 z-10">
+            <div
+              class="w-9 h-9 md:w-10 md:h-10 rounded-full border-2 border-white/20 bg-transparent flex items-center justify-center text-white/30 font-bold text-sm"
+            >
+              4
+            </div>
+            <span class="text-xs text-white/30 hidden sm:block"
+              >Verification</span
+            ><span class="text-xs text-white/30 sm:hidden">Verify</span>
+          </div>
+        </div>
+        <div
+          class="dark-card bg-gradient-to-br from-[#162035] to-[#0D1526] border border-[#00BAFF]/30 rounded-2xl p-6 md:p-9 shadow-lg shadow-[#00BAFF]/10"
+        >
+          <h2 class="text-lg font-semibold mb-6">Create your account</h2>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs text-white/50 mb-2 font-medium"
+                >Full Name</label
+              ><input
+                id="reg-name"
+                type="text"
+                placeholder="Your full name"
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm placeholder-white/25 outline-none focus:border-[#00BAFF]/50"
+              />
+            </div>
+            <div>
+              <label class="block text-xs text-white/50 mb-2 font-medium"
+                >Phone Number</label
+              >
+              <div class="flex gap-2">
+                <div
+                  class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white/40 text-sm whitespace-nowrap"
+                >
+                  🇷🇼 +250
+                </div>
+                <input
+                  type="text"
+                  placeholder="78 000 0000"
+                  class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm placeholder-white/25 outline-none focus:border-[#00BAFF]/50"
+                />
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs text-white/50 mb-2 font-medium"
+                >Email Address</label
+              ><input
+                id="reg-email"
+                type="email"
+                placeholder="your@email.com"
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm placeholder-white/25 outline-none focus:border-[#00BAFF]/50"
+              />
+            </div>
+            <div>
+              <label class="block text-xs text-white/50 mb-2 font-medium"
+                >I am a</label
+              ><select
+                id="reg-role"
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white/70 outline-none focus:border-[#00BAFF]/50"
+              >
+                <option value="job_seeker">Job Seeker</option>
+                <option value="employer">Employer</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs text-white/50 mb-2 font-medium"
+                >Password</label
+              ><input
+                id="reg-password"
+                type="password"
+                placeholder="8+ characters"
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm placeholder-white/25 outline-none focus:border-[#00BAFF]/50"
+              />
+            </div>
+            <div>
+              <label class="block text-xs text-white/50 mb-2 font-medium"
+                >Confirm Password</label
+              ><input
+                id="reg-confirm"
+                type="password"
+                placeholder="Repeat password"
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm placeholder-white/25 outline-none focus:border-[#00BAFF]/50"
+              />
+            </div>
+          </div>
+          <p class="text-white/25 text-xs mt-5 leading-relaxed">
+            AKAZI SCROLL is permanently free for all Rwandan youth aged 18–35.
+          </p>
+          <div
+            id="register-error"
+            class="hidden mt-4 bg-red-500/10 border border-red-500/30 text-red-400 text-xs px-4 py-3 rounded-xl"
+          ></div>
+          <div class="flex justify-end mt-6 pt-6 border-t border-white/10">
+            <button
+              id="register-btn"
+              onclick="register()"
+              class="bg-gradient-to-r from-[#00BAFF] to-[#0088CC] text-[#07091A] font-semibold px-6 py-2.5 rounded-xl text-sm flex items-center gap-2"
+            >
+              Continue
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <p class="text-center text-white/25 text-xs mt-5">
+          Already have an account?
+          <a href="#" onclick="showPage('login')" class="text-[#00BAFF]"
+            >Sign in</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <!-- PAGE: LOGIN -->
+    <div id="page-login" class="page">
+      <div class="max-w-md mx-auto px-4 sm:px-6 py-10 md:py-16">
+        <div class="text-center mb-8">
+          <div
+            class="text-[#00BAFF] text-xs font-bold tracking-widest uppercase mb-2"
+          >
+            Welcome Back
+          </div>
+          <h1 class="text-4xl md:text-5xl font-bold mb-2">Sign In</h1>
+          <p class="text-white/30 text-sm">Access your Akazi Scroll account.</p>
+        </div>
+        <div
+          class="dark-card bg-gradient-to-br from-[#162035] to-[#0D1526] border border-[#00BAFF]/30 rounded-2xl p-6 md:p-9 shadow-lg shadow-[#00BAFF]/10"
+        >
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs text-white/50 mb-2 font-medium"
+                >Email Address</label
+              ><input
+                id="login-email"
+                type="email"
+                placeholder="your@email.com"
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm placeholder-white/25 outline-none focus:border-[#00BAFF]/50"
+              />
+            </div>
+            <div>
+              <label class="block text-xs text-white/50 mb-2 font-medium"
+                >Password</label
+              ><input
+                id="login-password"
+                type="password"
+                placeholder="Your password"
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm placeholder-white/25 outline-none focus:border-[#00BAFF]/50"
+              />
+            </div>
+          </div>
+          <div
+            id="login-error"
+            class="hidden mt-4 bg-red-500/10 border border-red-500/30 text-red-400 text-xs px-4 py-3 rounded-xl"
+          ></div>
+          <div class="mt-6 pt-6 border-t border-white/10">
+            <button
+              id="login-btn"
+              onclick="login()"
+              class="w-full bg-gradient-to-r from-[#00BAFF] to-[#0088CC] text-[#07091A] font-semibold py-3 rounded-xl text-sm flex items-center justify-center gap-2"
+            >
+              Sign In
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <p class="text-center text-white/25 text-xs mt-5">
+          Don't have an account?
+          <a href="#" onclick="showPage('register')" class="text-[#00BAFF]"
+            >Register free</a
+          >
+        </p>
+      </div>
+    </div>
+
+    <!-- PAGE: EMPLOYER -->
+    <div id="page-employer" class="page">
+      <div class="p-4 md:p-8">
+        <div
+          class="flex flex-col sm:flex-row justify-between items-start gap-4 mb-8"
+        >
+          <div>
+            <div
+              class="text-[#00BAFF] text-xs font-bold tracking-widest uppercase mb-2"
+            >
+              Employer Portal
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">
+              Welcome,
+              <span id="employer-name" class="text-[#00BAFF]">Employer</span>
+            </h1>
+            <span
+              class="bg-[#00C46A]/15 border border-[#00C46A]/30 text-[#00C46A] text-xs font-semibold px-3 py-1 rounded-full"
+              >Subscription Active</span
+            >
+          </div>
+          <button
+            onclick="showPostJobModal()"
+            class="bg-gradient-to-r from-[#00BAFF] to-[#0088CC] text-[#07091A] font-semibold px-5 py-2.5 rounded-xl text-sm flex items-center gap-2 whitespace-nowrap"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+            Post New Job
+          </button>
+        </div>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          <div
+            class="dark-card bg-gradient-to-br from-[#162035] to-[#0D1526] border border-white/10 rounded-2xl p-5"
+          >
+            <div class="text-white/30 text-xs mb-2">Active Posts</div>
+            <div
+              id="stat-active-posts"
+              class="text-3xl md:text-4xl font-bold"
+              style="font-family: &quot;Cormorant Garamond&quot;, serif"
+            >
+              —
+            </div>
+          </div>
+          <div
+            class="dark-card bg-gradient-to-br from-[#162035] to-[#0D1526] border border-white/10 rounded-2xl p-5"
+          >
+            <div class="text-white/30 text-xs mb-2">Total Applicants</div>
+            <div
+              id="stat-total-apps"
+              class="text-3xl md:text-4xl font-bold"
+              style="font-family: &quot;Cormorant Garamond&quot;, serif"
+            >
+              —
+            </div>
+          </div>
+          <div
+            class="dark-card bg-gradient-to-br from-[#162035] to-[#0D1526] border border-white/10 rounded-2xl p-5"
+          >
+            <div class="text-white/30 text-xs mb-2">Shortlisted</div>
+            <div
+              id="stat-shortlisted"
+              class="text-3xl md:text-4xl font-bold"
+              style="font-family: &quot;Cormorant Garamond&quot;, serif"
+            >
+              —
+            </div>
+          </div>
+          <div
+            class="dark-card bg-gradient-to-br from-[#162035] to-[#0D1526] border border-white/10 rounded-2xl p-5"
+          >
+            <div class="text-white/30 text-xs mb-2">Hired</div>
+            <div
+              id="stat-hired"
+              class="text-3xl md:text-4xl font-bold"
+              style="font-family: &quot;Cormorant Garamond&quot;, serif"
+            >
+              —
+            </div>
+          </div>
+        </div>
+        <h2 class="text-base font-semibold mb-4">Active Job Posts</h2>
+        <div class="space-y-3 mb-8">
+          <div
+            class="dark-card bg-gradient-to-br from-[#162035] to-[#0D1526] border border-white/10 rounded-2xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+          >
+            <div>
+              <div class="font-medium text-sm mb-1">
+                Junior Software Developer
+              </div>
+              <div class="flex gap-3 text-xs text-white/30 flex-wrap">
+                <span>👁 312 views</span><span>👥 21 applicants</span
+                ><span>🕐 5 days ago</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <span
+                class="bg-[#00C46A]/15 border border-[#00C46A]/30 text-[#00C46A] text-xs font-semibold px-3 py-1 rounded-full"
+                >Active</span
+              ><button
+                class="bg-white/5 border border-white/10 text-white/50 text-xs px-4 py-2 rounded-xl hover:bg-white/10 transition"
+              >
+                View →
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="dark-card bg-gradient-to-r from-[#0D1526] to-[#162035] border border-[#00BAFF]/25 rounded-2xl p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
+        >
+          <div>
+            <div class="text-[#00C46A] text-xs font-semibold mb-2">
+              ✓ NIAP Eligible
+            </div>
+            <h3 class="font-semibold mb-1">Save 30% on Internship Salaries</h3>
+            <p class="text-white/40 text-sm">
+              The National Internship Acceleration Program subsidizes 30% of
+              salary costs.
+            </p>
+          </div>
+          <button
+            class="bg-gradient-to-r from-[#00BAFF] to-[#0088CC] text-[#07091A] font-semibold px-5 py-2.5 rounded-xl text-sm whitespace-nowrap"
+          >
+            Apply for Subsidy
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- POST JOB MODAL -->
+    <div
+      id="post-job-modal"
+      class="hidden fixed inset-0 z-50 bg-black/60 flex items-center justify-center px-4"
+    >
+      <div
+        class="dark-card bg-[#0D1526] border border-[#00BAFF]/30 rounded-2xl p-6 md:p-8 w-full max-w-lg shadow-2xl"
+      >
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-xl font-bold">Post a New Job</h2>
+          <button
+            onclick="hidePostJobModal()"
+            class="text-white/40 hover:text-white text-xl leading-none"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="space-y-4 max-h-[60vh] overflow-y-auto pr-1">
+          <div>
+            <label class="block text-xs text-white/50 mb-1">Job Title *</label
+            ><input
+              id="job-title"
+              type="text"
+              placeholder="e.g. Junior Software Developer"
+              class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm placeholder-white/25 outline-none focus:border-[#00BAFF]/50"
+            />
+          </div>
+          <div>
+            <label class="block text-xs text-white/50 mb-1">Description *</label
+            ><textarea
+              id="job-description"
+              rows="3"
+              placeholder="Describe the role..."
+              class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm placeholder-white/25 outline-none focus:border-[#00BAFF]/50 resize-none"
+            ></textarea>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs text-white/50 mb-1">Location</label
+              ><input
+                id="job-location-input"
+                type="text"
+                placeholder="e.g. Kigali"
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm placeholder-white/25 outline-none focus:border-[#00BAFF]/50"
+              />
+            </div>
+            <div>
+              <label class="block text-xs text-white/50 mb-1">Job Type</label
+              ><select
+                id="job-type"
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white/70 outline-none focus:border-[#00BAFF]/50"
+              >
+                <option value="full_time">Full-time</option>
+                <option value="part_time">Part-time</option>
+                <option value="contract">Contract</option>
+                <option value="internship">Internship</option>
+                <option value="remote">Remote</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-white/50 mb-1">Category</label
+            ><input
+              id="job-category"
+              type="text"
+              placeholder="e.g. Technology, Finance"
+              class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm placeholder-white/25 outline-none focus:border-[#00BAFF]/50"
+            />
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs text-white/50 mb-1"
+                >Min Salary (RWF)</label
+              ><input
+                id="job-salary-min"
+                type="number"
+                placeholder="300000"
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm placeholder-white/25 outline-none focus:border-[#00BAFF]/50"
+              />
+            </div>
+            <div>
+              <label class="block text-xs text-white/50 mb-1"
+                >Max Salary (RWF)</label
+              ><input
+                id="job-salary-max"
+                type="number"
+                placeholder="500000"
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm placeholder-white/25 outline-none focus:border-[#00BAFF]/50"
+              />
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs text-white/50 mb-1"
+              >Application Deadline</label
+            ><input
+              id="job-deadline"
+              type="date"
+              class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#00BAFF]/50"
+            />
+          </div>
+        </div>
+        <div class="flex gap-3 mt-6 pt-4 border-t border-white/10">
+          <button
+            onclick="hidePostJobModal()"
+            class="flex-1 border border-white/10 text-white/50 font-medium py-3 rounded-xl text-sm hover:bg-white/5 transition"
+          >
+            Cancel
+          </button>
+          <button
+            id="post-job-btn"
+            onclick="postJob()"
+            class="flex-1 bg-gradient-to-r from-[#00BAFF] to-[#0088CC] text-[#07091A] font-semibold py-3 rounded-xl text-sm"
+          >
+            Post Job
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE: ANALYTICS -->
+    <div id="page-analytics" class="page">
+      <div class="p-4 md:p-8">
+        <div
+          class="flex flex-col sm:flex-row justify-between items-start gap-4 mb-8"
+        >
+          <div>
+            <div
+              class="text-[#00BAFF] text-xs font-bold tracking-widest uppercase mb-2"
+            >
+              MIFOTRA Analytics Portal
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">
+              Youth Employment Dashboard
+            </h1>
+            <div class="flex items-center gap-2">
+              <div
+                class="w-2 h-2 bg-[#00C46A] rounded-full shadow shadow-[#00C46A]"
+              ></div>
+              <span class="text-white/30 text-xs"
+                >Live · Last synced Today</span
+              >
+            </div>
+          </div>
+          <button
+            class="border border-[#00BAFF]/40 text-[#00BAFF] text-sm font-medium px-4 py-2 rounded-xl hover:bg-[#00BAFF]/10 transition flex items-center gap-2 whitespace-nowrap"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            Export SFTP
+          </button>
+        </div>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <div
+            class="dark-card bg-gradient-to-br from-[#162035] to-[#0D1526] border border-white/10 rounded-2xl p-5"
+          >
+            <div class="text-white/30 text-xs mb-2">Total Users</div>
+            <div
+              id="stat-total-users"
+              class="text-3xl md:text-4xl font-bold"
+              style="font-family: &quot;Cormorant Garamond&quot;, serif"
+            >
+              —
+            </div>
+            <div class="text-[#00C46A] text-xs mt-1">Platform total</div>
+          </div>
+          <div
+            class="dark-card bg-gradient-to-br from-[#162035] to-[#0D1526] border border-white/10 rounded-2xl p-5"
+          >
+            <div class="text-white/30 text-xs mb-2">Active Openings</div>
+            <div
+              id="stat-total-jobs"
+              class="text-3xl md:text-4xl font-bold"
+              style="font-family: &quot;Cormorant Garamond&quot;, serif"
+            >
+              —
+            </div>
+            <div class="text-[#00C46A] text-xs mt-1">Live jobs</div>
+          </div>
+          <div
+            class="dark-card bg-gradient-to-br from-[#162035] to-[#0D1526] border border-white/10 rounded-2xl p-5"
+          >
+            <div class="text-white/30 text-xs mb-2">Total Applications</div>
+            <div
+              id="stat-total-applications"
+              class="text-3xl md:text-4xl font-bold"
+              style="font-family: &quot;Cormorant Garamond&quot;, serif"
+            >
+              —
+            </div>
+            <div class="text-[#FFB800] text-xs mt-1">All time</div>
+          </div>
+          <div
+            class="dark-card bg-gradient-to-br from-[#162035] to-[#0D1526] border border-white/10 rounded-2xl p-5"
+          >
+            <div class="text-white/30 text-xs mb-2">Total Hired</div>
+            <div
+              id="stat-total-hired"
+              class="text-3xl md:text-4xl font-bold"
+              style="font-family: &quot;Cormorant Garamond&quot;, serif"
+            >
+              —
+            </div>
+            <div class="text-purple-400 text-xs mt-1">Placed</div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-5 mb-5">
+          <div
+            class="dark-card bg-gradient-to-br from-[#162035] to-[#0D1526] border border-white/10 rounded-2xl p-6"
+          >
+            <h2 class="font-semibold text-sm mb-6">
+              Monthly Youth Placements vs Target
+            </h2>
+            <div class="flex items-end gap-3 h-36">
+              <div class="flex-1 flex flex-col items-center gap-1">
+                <div class="flex gap-1 items-end w-full h-28">
+                  <div
+                    class="flex-1 bg-gradient-to-t from-[#00BAFF] to-[#00BAFF]/60 rounded-t"
+                    style="height: 52%"
+                  ></div>
+                  <div
+                    class="flex-1 bg-[#00C46A]/30 rounded-t"
+                    style="height: 57%"
+                  ></div>
+                </div>
+                <span class="text-white/25 text-[10px]">Jul</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center gap-1">
+                <div class="flex gap-1 items-end w-full h-28">
+                  <div
+                    class="flex-1 bg-gradient-to-t from-[#00BAFF] to-[#00BAFF]/60 rounded-t"
+                    style="height: 67%"
+                  ></div>
+                  <div
+                    class="flex-1 bg-[#00C46A]/30 rounded-t"
+                    style="height: 60%"
+                  ></div>
+                </div>
+                <span class="text-white/25 text-[10px]">Aug</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center gap-1">
+                <div class="flex gap-1 items-end w-full h-28">
+                  <div
+                    class="flex-1 bg-gradient-to-t from-[#00BAFF] to-[#00BAFF]/60 rounded-t"
+                    style="height: 59%"
+                  ></div>
+                  <div
+                    class="flex-1 bg-[#00C46A]/30 rounded-t"
+                    style="height: 63%"
+                  ></div>
+                </div>
+                <span class="text-white/25 text-[10px]">Sep</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center gap-1">
+                <div class="flex gap-1 items-end w-full h-28">
+                  <div
+                    class="flex-1 bg-gradient-to-t from-[#00BAFF] to-[#00BAFF]/60 rounded-t"
+                    style="height: 79%"
+                  ></div>
+                  <div
+                    class="flex-1 bg-[#00C46A]/30 rounded-t"
+                    style="height: 66%"
+                  ></div>
+                </div>
+                <span class="text-white/25 text-[10px]">Oct</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center gap-1">
+                <div class="flex gap-1 items-end w-full h-28">
+                  <div
+                    class="flex-1 bg-gradient-to-t from-[#00BAFF] to-[#00BAFF]/60 rounded-t"
+                    style="height: 88%"
+                  ></div>
+                  <div
+                    class="flex-1 bg-[#00C46A]/30 rounded-t"
+                    style="height: 70%"
+                  ></div>
+                </div>
+                <span class="text-white/25 text-[10px]">Nov</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center gap-1">
+                <div class="flex gap-1 items-end w-full h-28">
+                  <div
+                    class="flex-1 bg-gradient-to-t from-[#00BAFF] to-[#00BAFF]/60 rounded-t"
+                    style="height: 100%"
+                  ></div>
+                  <div
+                    class="flex-1 bg-[#00C46A]/30 rounded-t"
+                    style="height: 76%"
+                  ></div>
+                </div>
+                <span class="text-white/25 text-[10px]">Jan</span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="dark-card bg-gradient-to-br from-[#162035] to-[#0D1526] border border-white/10 rounded-2xl p-6"
+          >
+            <h2 class="font-semibold text-sm mb-5">By Sector</h2>
+            <div class="space-y-3">
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="flex items-center gap-2 text-white/50"
+                    ><span
+                      class="w-2 h-2 rounded-full bg-[#00BAFF] inline-block"
+                    ></span
+                    >ICT & Tech</span
+                  ><span class="font-semibold">28%</span>
+                </div>
+                <div class="h-1.5 bg-white/5 rounded-full">
+                  <div
+                    class="h-full bg-[#00BAFF] rounded-full"
+                    style="width: 98%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="flex items-center gap-2 text-white/50"
+                    ><span
+                      class="w-2 h-2 rounded-full bg-[#00C46A] inline-block"
+                    ></span
+                    >Agriculture</span
+                  ><span class="font-semibold">22%</span>
+                </div>
+                <div class="h-1.5 bg-white/5 rounded-full">
+                  <div
+                    class="h-full bg-[#00C46A] rounded-full"
+                    style="width: 77%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="flex items-center gap-2 text-white/50"
+                    ><span
+                      class="w-2 h-2 rounded-full bg-[#FFB800] inline-block"
+                    ></span
+                    >Finance</span
+                  ><span class="font-semibold">18%</span>
+                </div>
+                <div class="h-1.5 bg-white/5 rounded-full">
+                  <div
+                    class="h-full bg-[#FFB800] rounded-full"
+                    style="width: 63%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="flex items-center gap-2 text-white/50"
+                    ><span
+                      class="w-2 h-2 rounded-full bg-purple-400 inline-block"
+                    ></span
+                    >Education</span
+                  ><span class="font-semibold">14%</span>
+                </div>
+                <div class="h-1.5 bg-white/5 rounded-full">
+                  <div
+                    class="h-full bg-purple-400 rounded-full"
+                    style="width: 49%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="flex items-center gap-2 text-white/50"
+                    ><span
+                      class="w-2 h-2 rounded-full bg-red-400 inline-block"
+                    ></span
+                    >Construction</span
+                  ><span class="font-semibold">10%</span>
+                </div>
+                <div class="h-1.5 bg-white/5 rounded-full">
+                  <div
+                    class="h-full bg-red-400 rounded-full"
+                    style="width: 35%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="dark-card bg-gradient-to-br from-[#162035] to-[#0D1526] border border-[#00BAFF]/20 rounded-2xl p-6"
+        >
+          <h2 class="font-semibold text-sm mb-6">
+            Vision 2050 — Youth Employment Progress
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            <div>
+              <div class="flex justify-between text-xs mb-2">
+                <span class="text-white/50">Youth Employment Rate</span
+                ><span class="text-white/30">Target: 80%</span>
+              </div>
+              <div class="h-2.5 bg-white/5 rounded-full mb-2 overflow-hidden">
+                <div
+                  class="h-full bg-gradient-to-r from-[#00BAFF] to-[#00BAFF]/80 rounded-full"
+                  style="width: 72%"
+                ></div>
+              </div>
+              <div class="flex justify-between text-xs">
+                <span class="font-semibold">71.6%</span
+                ><span class="text-white/30">72% of target</span>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-2">
+                <span class="text-white/50">NEET Rate</span
+                ><span class="text-white/30">Target: 10%</span>
+              </div>
+              <div class="h-2.5 bg-white/5 rounded-full mb-2 overflow-hidden">
+                <div
+                  class="h-full bg-gradient-to-r from-[#FFB800] to-[#FFB800]/80 rounded-full"
+                  style="width: 40%"
+                ></div>
+              </div>
+              <div class="flex justify-between text-xs">
+                <span class="font-semibold">28.4%</span
+                ><span class="text-white/30">40% of target</span>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-2">
+                <span class="text-white/50">SACCO Financial Access</span
+                ><span class="text-white/30">Target: 30%</span>
+              </div>
+              <div class="h-2.5 bg-white/5 rounded-full mb-2 overflow-hidden">
+                <div
+                  class="h-full bg-gradient-to-r from-[#00C46A] to-[#00C46A]/80 rounded-full"
+                  style="width: 55%"
+                ></div>
+              </div>
+              <div class="flex justify-between text-xs">
+                <span class="font-semibold">22%</span
+                ><span class="text-white/30">55% of target</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
