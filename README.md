@@ -2,7 +2,7 @@
 
 > Connecting Rwandan youth to verified employment opportunities through intelligent matching and real-time government analytics.
 
-**Live Demo:** [https://akazi-scroll-frontend.onrender.com](https://akazi-scroll-frontend.onrender.com)  
+**Live Demo:** [https://akazi-scroll-front-end.netlify.com](https://akazi-scroll.netlify.app/)  
 **Backend API:** [https://akazi-scroll-backend.onrender.com](https://akazi-scroll-backend.onrender.com)  
 **Built by:** Elyse Ishimwe — African Leadership University, Rwanda, 2026
 
